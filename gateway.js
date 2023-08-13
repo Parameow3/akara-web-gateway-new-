@@ -22,7 +22,7 @@ const cookieParser = require("cookie-parser");
 gateway.use(express.json());
 gateway.use(express.urlencoded({extended : true}));
 const cors = require("cors");
-gateway.use("trust proxy",1);
+gateway.set("trust proxy",1);
 gateway.use(cors({
     origin : ["http://localhost:3000","https://react-backend-ui.vercel.app/"],
     methods : ["GET","POST","PUT","DELETE"],
