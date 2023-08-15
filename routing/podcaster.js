@@ -21,7 +21,7 @@ route.get('/list/all/podcaster',TokenValidator,async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     try{
-        const result = await axios.get("http://localhost:4000/discover/podcaster/list/all/listallpodcaster",
+        const result = await axios.get("https://dev.akarahub.tech/server3/discover/podcaster/list/all/listallpodcaster",
         {
             headers : {
                 "content-type" : "application/json"
@@ -48,7 +48,7 @@ route.post('/list/podcaster/podcast',TokenValidator,async(req,res)=>{
     //make the axios request
     try{
         
-        const result = await axios.post("http://localhost:4000/discover/podcaster/list/podcaster/podcastofpodcaster",{
+        const result = await axios.post("https://dev.akarahub.tech/server3/discover/podcaster/list/podcaster/podcastofpodcaster",{
                 id : podcaster_id  
         },{
             headers : {
@@ -73,7 +73,7 @@ route.post('/ban/podcaster',TokenValidator,async(req,res)=>{
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     //make the axios request
     try{
-        const result = await axios.post("http://localhost:4000/discover/podcaster/ban/banpodcaster",{
+        const result = await axios.post("https://dev.akarahub.tech/server3/discover/podcaster/ban/banpodcaster",{
                 podcaster_id : podcaster_id  
         },{
             headers : {
@@ -100,7 +100,7 @@ route.post('/disban/podcaster',TokenValidator,async(req,res)=>{
     //make the axios request
     try{
         
-        const result = await axios.post("http://localhost:4000/discover/podcaster/ban/podcaster/unbanpodcaster",{
+        const result = await axios.post("https://dev.akarahub.tech/server3/discover/podcaster/ban/podcaster/unbanpodcaster",{
                 podcaster_id : podcaster_id  
         },{
             headers : {
@@ -128,7 +128,7 @@ route.post('/delete/podcaster',TokenValidator,async(req,res)=>{
     //make the axios request
     try{
         
-        const result = await axios.post("http://localhost:4000/discover/podcaster/delete/deletepodcaster",{
+        const result = await axios.post("https://dev.akarahub.tech/server3/discover/podcaster/delete/deletepodcaster",{
              podcaster_id : podcaster_id  
         },{
             headers : {

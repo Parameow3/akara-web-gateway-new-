@@ -22,7 +22,7 @@ route.post('/create',TokenValidator,async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     try{
-        const data = await axios.post("http://localhost:4000/discover/category/createcategory",{
+        const data = await axios.post("https://dev.akarahub.tech/server3/discover/category/createcategory",{
             data : {
                 category : category
             }
@@ -56,7 +56,7 @@ route.get('/list/all',TokenValidator,async(req,res)=>{
     }else{
         const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
         axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-        const data = await axios.get("http://localhost:4000/discover/category/list/all/categorylistall");
+        const data = await axios.get("https://dev.akarahub.tech/server3/discover/category/list/all/categorylistall");
         return res.json(data.data);
     }
    
@@ -70,7 +70,7 @@ route.post('/list/category/podcast',async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
         axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
         try{
-            const data = await axios.post("http://localhost:4000/discover/category/list/podcastincategory",{    
+            const data = await axios.post("https://dev.akarahub.tech/server3/discover/category/list/podcastincategory",{    
             categoryName : categoryType
         },{
             headers : {
@@ -94,7 +94,7 @@ route.post('/update/category',async(req,res)=>{
     const category_name = req.body.category_name;
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/category/updatecategory",
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/category/updatecategory",
      { 
         category_id: category_id ,
         category_name : category_name
@@ -116,7 +116,7 @@ route.post("/delete/category",async(req,res)=>{
     const category_id = req.body.category_id;
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/category/deletecategory",
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/category/deletecategory",
      { 
         category_id: category_id
     }

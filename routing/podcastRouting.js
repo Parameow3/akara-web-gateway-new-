@@ -36,7 +36,7 @@ route.post('/upload/podcast',TokenValidator,upload.fields([{maxCount : 1 , name 
         my_file.append("audio_type",req.files['audio'][0].mimetype);
         axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
         try{
-            const data = await axios.post("http://localhost:4000/discover/podcast/upload/podcast",
+            const data = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/upload/podcast",
            my_file
         ,{
            headers : {
@@ -61,7 +61,7 @@ route.post('/delete/podcast',TokenValidator,async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email,identify:req.identify},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     console.log(id);
-    const deleted = await axios.post("http://localhost:4000/discover/podcast/delete/podcast",
+    const deleted = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/delete/podcast",
     {  podcast_id: id  }
     , 
     {
@@ -130,7 +130,7 @@ route.post('/update/podcast',TokenValidator,upload.fields([{maxCount : 1 , name 
 
             axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
             try{
-               const update = await axios.post("http://localhost:4000/discover/podcast/update/podcast",
+               const update = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/update/podcast",
                my_file
             ,{
                headers : {
@@ -158,7 +158,7 @@ route.post('/update/podcast',TokenValidator,upload.fields([{maxCount : 1 , name 
 route.get('/list/podcast',TokenValidator,async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.get("http://localhost:4000/discover/podcast/list/listallpodcast");
+    const data = await axios.get("https://dev.akarahub.tech/server3/discover/podcast/list/listallpodcast");
     return res.json(data.data);
 });
 
@@ -168,7 +168,7 @@ route.get('/list/podcast',TokenValidator,async(req,res)=>{
 // route.get('/list/podcast/podcaster',TokenValidator,async(req,res)=>{
 //     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
 //     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-//     const data = await axios.get("http://localhost:4000/discover/podcaster/list/all/listallpodcaster");
+//     const data = await axios.get("https://dev.akarahub.tech/server3/discover/podcaster/list/all/listallpodcaster");
 //     return res.json(data.data);
 // })
 
@@ -179,7 +179,7 @@ route.post('/list/podcast/category',async(req,res)=>{
     const category = req.body.category;
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/category/list/all/categorylistall",
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/category/list/all/categorylistall",
     {
         categoryName : category
     },{
@@ -195,7 +195,7 @@ route.post('/list/podcast/category',async(req,res)=>{
 route.post("/generate/url/forever",async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/podcast/regenerate/podcast/forever",{
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/regenerate/podcast/forever",{
         headers : {
             "content-type" : "application/json"
         }
@@ -208,7 +208,7 @@ route.post("/generate/url/forever",async(req,res)=>{
 route.post("/stop/url/forever",async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/podcast/stop/regenerate/podcast",{
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/stop/regenerate/podcast",{
         headers : {
             "content-type" : "application/json"
         }
@@ -222,7 +222,7 @@ route.post("/ban/podcast",async(req,res)=>{
     const podcast_id = req.body.podcast_id;
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
-    const data = await axios.post("http://localhost:4000/discover/podcast/ban/banpodcast",
+    const data = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/ban/banpodcast",
         {
             podcast_id : podcast_id
         }
@@ -244,7 +244,7 @@ route.post("/disban/podcast",async(req,res)=>{
     const token = jsonwebtoken.sign({user:req.session.user,role:req.session.role,email:req.session.email},process.env.PROGRAM_TOKEN_SECRET,{expiresIn : '5min'});
     axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
     try{
-        const data = await axios.post("http://localhost:4000/discover/podcast/ban/notban",{
+        const data = await axios.post("https://dev.akarahub.tech/server3/discover/podcast/ban/notban",{
             podcast_id : podcast_id
         },{
             headers:{
